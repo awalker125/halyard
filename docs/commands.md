@@ -277,10 +277,10 @@
  * [**hal config security api ssl edit**](#hal-config-security-api-ssl-edit)
  * [**hal config security api ssl enable**](#hal-config-security-api-ssl-enable)
  * [**hal config security authn**](#hal-config-security-authn)
- * [**hal config security authn_iap**](#hal-config-security-authn-iap)
- * [**hal config security authn_iap_disable**](#hal-config-security-authn-iap-disable)
- * [**hal config security authn_iap_edit**](#hal-config-security-authn-iap-edit)
- * [**hal config security authn_iap_enable**](#hal-config-security-authn-iap-enable)
+ * [**hal config security authn iap**](#hal-config-security-authn-iap)
+ * [**hal config security authn iap disable**](#hal-config-security-authn-iap-disable)
+ * [**hal config security authn iap edit**](#hal-config-security-authn-iap-edit)
+ * [**hal config security authn iap enable**](#hal-config-security-authn-iap-enable)
  * [**hal config security authn ldap**](#hal-config-security-authn-ldap)
  * [**hal config security authn ldap disable**](#hal-config-security-authn-ldap-disable)
  * [**hal config security authn ldap edit**](#hal-config-security-authn-ldap-edit)
@@ -5467,6 +5467,7 @@ hal config security authn [parameters] [subcommands]
  * `--no-validate`: (*Default*: `false`) Skip validation.
 
 #### Subcommands
+ * `iap`: Configure the iap method for authenticating.
  * `ldap`: Configure the ldap method for authenticating.
  * `oauth2`: Configure the oauth2 method for authenticating.
  * `saml`: Configure the saml method for authenticating.
@@ -5488,7 +5489,7 @@ hal config security authn iap [parameters] [subcommands]
 
 #### Subcommands
  * `disable`: Set the iap method as disabled
- * `edit`: Configure authentication using Google Cloud Identity-Aware Proxy.
+ * `edit`: Configure authentication using the Google Cloud Identity-Aware Proxy authentication model.
  * `enable`: Set the iap method as enabled
 
 ---
@@ -5509,11 +5510,7 @@ hal config security authn iap disable [parameters]
 ---
 ## hal config security authn iap edit
 
-Google Cloud Identity-Aware Proxy (IAP) is an authentication model that utilizes
-Google OAuth2.0 and an authorization service to provide access control for users
-of GCP. After a user has been authenticated and authorized by IAP's service, a
-JWT token is passed along which Spinnaker uses to check for authenticity and to
-get the user email from the payload and sign the user in.
+Google Cloud Identity-Aware Proxy (IAP) is an authentication model that utilizes Google OAuth2.0 and an authorization service to provide access control for users of GCP. After a user has been authenticated and authorized by IAP's service, a JWT token is passed along which Spinnaker uses to check for authenticity and to get the user email from the payload and sign the user in.
 
 #### Usage
 ```
@@ -5521,8 +5518,7 @@ hal config security authn iap edit [parameters]
 ```
 
 #### Parameters
- * `--audience`:The Audience from the ID token payload. You can retrieve this field from the IAP
-console: https://cloud.google.com/iap/docs/signed-headers-howto#verify_the_id_token_header.
+ * `--audience`: The Audience from the ID token payload. You can retrieve this field from the IAP console: https://cloud.google.com/iap/docs/signed-headers-howto#verify_the_id_token_header.
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
  * `--iap-verify-key-url`: The URL containing the Cloud IAP public keys in JWK format.
  * `--issuer-id`: The Issuer from the ID token payload.
@@ -5543,6 +5539,7 @@ hal config security authn iap enable [parameters]
 #### Parameters
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
  * `--no-validate`: (*Default*: `false`) Skip validation.
+
 
 ---
 ## hal config security authn ldap
@@ -5664,7 +5661,7 @@ hal config security authn oauth2 edit [parameters]
  * `--deployment`: If supplied, use this Halyard deployment. This will _not_ create a new deployment.
  * `--no-validate`: (*Default*: `false`) Skip validation.
  * `--pre-established-redirect-uri`: The externally accessible URL for Gate. For use with load balancers that do any kind of address manipulation for Gate traffic, such as an SSL terminating load balancer.
- * `--provider`: The OAuth provider handling authentication. The supported options are Google, GitHub, Azure and byo
+ * `--provider`: The OAuth provider handling authentication. The supported options are Google, GitHub, Oracle, Azure, byo
  * `--scope`: The scope for your OAuth provider.
  * `--user-authorization-uri`: The user authorization uri for your OAuth provider.
  * `--user-info-mapping-email`: The email field returned from your OAuth provider.
